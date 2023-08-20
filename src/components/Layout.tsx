@@ -3,6 +3,7 @@ import Overview from "./Overview"
 import Header from "./Header"
 import Week from "./week"
 import Highlight from "./Highlight"
+import example from "../example.json"
 
 export default function Layout() {
     return (

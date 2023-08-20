@@ -1,5 +1,14 @@
 import React from "react"
 
 export default function Week() {
-    return (<div>Week</div>)
+    return (
+    <div className="week-component">
+        <div className="neumorphism"></div>
+        <div className="neumorphism"></div>
+        <div className="neumorphism"></div>
+        <div className="neumorphism"></div>
+        <div className="neumorphism"></div>
+        <div className="neumorphism"></div>
+        <div className="neumorphism"></div>
+    </div>)
 }
