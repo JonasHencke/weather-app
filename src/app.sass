@@ -1,7 +1,22 @@
-div
-    color: red
-
-h1
-    color: blue
+body
+  background-color: #e0e0e0
 
 
+@mixin neumorphism-pressed($width, $height)
+    width: $width
+    height: $height
+    border-radius: 30px
+    background: #e0e0e0
+    box-shadow: (inset calc($width * 0.04) calc($width * 0.04) calc($width * 0.08) #acacac, inset calc($width * -0.04) calc($width * -0.04) calc($width * 0.08) #ffffff)
+
+
+@mixin neumorphism-default($width, $height)
+    width: $width
+    height: $height
+    border-radius: 30px
+    background: linear-gradient(145deg, #f0f0f0, #cacaca)
+    box-shadow: (calc($width * 0.04) calc($width * 0.04) calc($width * 0.08) #acacac, calc($width * -0.04) calc($width * -0.04) calc($width * 0.08) #ffffff)
+
+.neumorphism
+    @include neumorphism-default(100px, 100px)
+    margin: 3em 3em

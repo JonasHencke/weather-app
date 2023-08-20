@@ -4,8 +4,7 @@ function App() {
 
   return (
     <>
-    <h1>h1</h1>
-    <div>Hello world.</div>
+    <div className="neumorphism"></div>
     </>
   )
 }
