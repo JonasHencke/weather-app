@@ -1,6 +1,7 @@
 body
   background-color: #e0e0e0
 
+/* Neumorphism mixins */
 
 @mixin neumorphism-pressed($width, $height)
     width: $width
@@ -18,5 +19,5 @@ body
     box-shadow: (calc($width * 0.04) calc($width * 0.04) calc($width * 0.08) #acacac, calc($width * -0.04) calc($width * -0.04) calc($width * 0.08) #ffffff)
 
 .neumorphism
-    @include neumorphism-default(100px, 100px)
-    margin: 3em 3em
+  @include neumorphism-default(200px, 200px)
+  

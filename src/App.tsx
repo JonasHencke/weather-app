@@ -1,10 +1,11 @@
 import "./app.sass"
+import Layout from "./components/Layout"
 
 function App() {
 
   return (
     <>
-    <div className="neumorphism"></div>
+    <Layout/>
     </>
   )
 }
