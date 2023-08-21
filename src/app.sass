@@ -11,23 +11,25 @@ html, body, #root
   align-items: center
 
 body
-  background-color: #ffffff
+  background-color: #dde1e7
 
 /* Neumorphism mixins */
 
 @mixin neumorphism-pressed($width, $height)
-    width: $width
-    height: $height
-    border-radius: 30px
-    background: #ffffff
-    box-shadow: (inset calc($width * 0.04) calc($width * 0.04) calc($width * 0.08) #d4d4d4, inset calc($width * -0.04) calc($width * -0.04) calc($width * 0.08) #ffffff)
+  height: $height
+  width: $width
+  background: #dde1e7
+  border-radius: 20px
+  box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3)
+
 
 
 @mixin neumorphism-default($width, $height)
-    width: $width
-    height: $height
-    border-radius: 30px
-    box-shadow: (calc($width * 0.02) calc($width * 0.02) calc($width * 0.04) #d4d4d4, calc($width * -0.02) calc($width * -0.02) calc($width * 0.04) #ffffff)
+  height: $height
+  width: $width
+  background: #dde1e7
+  border-radius: 20px
+  box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3)
 
 /* --------------------- */
 .neumorphism
@@ -66,6 +68,7 @@ body
   display: flex
   justify-content: center
   align-items: center
+  font-size-adjust: 0.8
 
 .week-inactive
   @include neumorphism-default(125px , 40px )
@@ -78,12 +81,15 @@ body
   display: flex
   justify-content: center
   align-items: center
+  border-radius: 30px
+  font-size-adjust: 0.8
 
 .fahrenheidt-inactive
   @include neumorphism-default(50px , 50px )
   display: flex
   justify-content: center
   align-items: center
+  border-radius: 30px
   
 
 .week-component
