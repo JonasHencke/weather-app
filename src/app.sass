@@ -13,6 +13,7 @@ html, body, #root
 body
   background-color: #dde1e7
 
+/* --------------------- */
 /* Neumorphism mixins */
 
 @mixin neumorphism-pressed($width, $height)
@@ -32,9 +33,7 @@ body
   box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3)
 
 /* --------------------- */
-.neumorphism
-  @include neumorphism-default(100px, 130px)
-  text-align: center
+/* Layout */
   
 .flex-layout
   display: flex
@@ -42,20 +41,29 @@ body
   border-radius: 30px
   width: 90%
   height: 90%
+  max-width: 1800px
+  max-height: 988px
 
-.overview-component
-  @include neumorphism-default(27vw , 90vh)
-  height
-
+.flex-left
+  width: 25%
+  
 .flex-right
   display: flex
   flex-direction: column
-  width: 100%
+  width: 75%
 
+/* --------------------- */
+/* Overview component */
+
+.overview-component
+  @include neumorphism-default(100%, 100%)
+
+/* --------------------- */
+/* Header component */
 
 .header-component
-  height: 13%
-  width: 57vw
+  height: 6%
+  width: 100%
   display: flex
   justify-content: space-between
 
@@ -64,42 +72,61 @@ body
   gap: 2em
 
 .today-active
-  @include neumorphism-pressed(125px , 40px )
+  @include neumorphism-pressed(null , 100%)
   display: flex
   justify-content: center
   align-items: center
-  font-size-adjust: 0.8
+  aspect-ratio: 3 / 1
 
 .week-inactive
-  @include neumorphism-default(125px , 40px )
+  @include neumorphism-default(null , 100%)
   display: flex
   justify-content: center
   align-items: center
+  aspect-ratio: 3 / 1
+
+.temperature-container
+  width: 15%
+  height: 100%
+  display: flex
+  justify-content: space-between
 
 .celsius-active
-  @include neumorphism-pressed(50px , 50px )
+  @include neumorphism-default(null , 100%)
   display: flex
   justify-content: center
   align-items: center
-  border-radius: 30px
-  font-size-adjust: 0.8
+  aspect-ratio: 1 / 1
+  text-align: center
 
 .fahrenheidt-inactive
-  @include neumorphism-default(50px , 50px )
+  @include neumorphism-default(null , 100%)
   display: flex
   justify-content: center
   align-items: center
   border-radius: 30px
+  aspect-ratio: 1 / 1
   
+/* --------------------- */
+/* Week component */
 
 .week-component
   display: flex
   gap: 1.1em
-  height: 27%
+  height: 30%
   align-items: center
+  width: 100%
+  justify-content: space-between
+
+.weekday
+  @include neumorphism-default(14.28%, 80%)
+  text-align: center
+
+/* --------------------- */
+/* Week component */
 
 .highlight-component
   height: 60%
-  @include neumorphism-default(57vw , 54vh )
+  @include neumorphism-default(100% , 64%)
   
   
