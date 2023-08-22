@@ -11,7 +11,8 @@ html, body, #root
   align-items: center
 
 body
-  background-color: #dde1e7
+  background-color: #e3edf7
+  color: #31456a
 
 /* --------------------- */
 /* Neumorphism mixins */
@@ -19,18 +20,18 @@ body
 @mixin neumorphism-pressed($width, $height)
   height: $height
   width: $width
-  background: #dde1e7
+  background: #e3edf7
   border-radius: 20px
-  box-shadow: inset -5px -5px 9px rgba(255,255,255,0.45), inset 5px 5px 9px rgba(94,104,121,0.3)
+  box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2), inset -4px -4px 6px -1px rgba(255,255,255,0.7)
 
 
 
 @mixin neumorphism-default($width, $height)
   height: $height
   width: $width
-  background: #dde1e7
+  background: #e3edf7
   border-radius: 20px
-  box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3)
+  box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45), 5px 5px 9px rgba(94, 104, 121, 0.3)
 
 /* --------------------- */
 /* Layout */
@@ -57,6 +58,51 @@ body
 
 .overview-component
   @include neumorphism-default(100%, 100%)
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.overview-image
+  width: 80%
+
+.searchbar
+  @include neumorphism-pressed(80% , 2em )
+  margin: 2em auto
+  margin-bottom: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  
+.overview-temperature
+  margin: 0
+  margin-left: 10%
+  font-size: 60px
+  align-self: start
+
+.overview-date
+  margin: 0
+  margin-left: 10%
+  padding-bottom: 10%
+  align-self: start
+  border-bottom: 1px solid black
+
+.overview-wrapper
+  display: flex
+  width: 80%
+  align-self: center
+  gap: 1em
+
+.overview-wrapper img
+  width: 10%
+
+.overview-location
+  width: 80%
+  margin-top: 2em
+  border: 1px solid #31456a
+  padding: 1.5em 0
+  text-align: center
+  border-radius: 10px
+
 
 /* --------------------- */
 /* Header component */
