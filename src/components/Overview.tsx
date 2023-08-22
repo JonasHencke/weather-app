@@ -1,5 +1,5 @@
 import React from "react"
-import icon from "../SVGs/thunder.svg"
+import icon from "../SVGs/night.svg"
 import cloud from "../SVGs/cloudy.svg"
 import rain from "../SVGs/rain-svgrepo-com.svg"
 
