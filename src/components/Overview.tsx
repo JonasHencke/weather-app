@@ -7,7 +7,7 @@ export default function Overview() {
     return (
     <div className="overview-component">
         <div className="searchbar">Search</div>
-        <img className="overview-image" src ={icon}/>
+        <img className="overview-image" src={icon}/>
         <p className="overview-temperature">16°C</p>
         <p className="overview-date">Montag, 16:00</p>
         <p className="overview-wrapper"><img src={cloud}/>leicht bewölkt</p>

@@ -184,7 +184,18 @@ body
 /* Week component */
 
 .highlight-component
-  height: 60%
-  @include neumorphism-default(100% , 64%)
+  height: 64%
+  width: 100%
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  grid-template-rows: 1fr 1fr
+  gap: 5% 2%
+
+.highlight
+  @include neumorphism-default(100%, 100% )
+  display: flex
+  justify-content: center
+  align-items: center
+  
   
   
