@@ -1,43 +1,43 @@
 {
-    "coord": {
-      "lon": 6.75,
-      "lat": 51.4333
-    },
-    "weather": [
-      {
-        "id": 800,
-        "main": "Clear",
-        "description": "clear sky",
-        "icon": "01d"
-      }
-    ],
-    "base": "stations",
-    "main": {
-      "temp": 299.18,
-      "feels_like": 299.18,
-      "temp_min": 296.49,
-      "temp_max": 300.29,
-      "pressure": 1021,
-      "humidity": 50
-    },
-    "visibility": 10000,
-    "wind": {
-      "speed": 2.57,
-      "deg": 330
-    },
-    "clouds": {
-      "all": 0
-    },
-    "dt": 1692554440,
-    "sys": {
-      "type": 1,
-      "id": 1264,
-      "country": "DE",
-      "sunrise": 1692505566,
-      "sunset": 1692557235
-    },
-    "timezone": 7200,
-    "id": 2934691,
-    "name": "Duisburg",
-    "cod": 200
-  }
+  "coord": {
+    "lon": 6.75,
+    "lat": 51.4333
+  },
+  "weather": [
+    {
+      "id": 803,
+      "main": "Clouds",
+      "description": "Überwiegend bewölkt",
+      "icon": "04d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 295.91,
+    "feels_like": 296.2,
+    "temp_min": 293.92,
+    "temp_max": 297.27,
+    "pressure": 1007,
+    "humidity": 75
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 4.63,
+    "deg": 220
+  },
+  "clouds": {
+    "all": 75
+  },
+  "dt": 1692983802,
+  "sys": {
+    "type": 1,
+    "id": 1264,
+    "country": "DE",
+    "sunrise": 1692938044,
+    "sunset": 1692988607
+  },
+  "timezone": 7200,
+  "id": 2934691,
+  "name": "Duisburg",
+  "cod": 200
+}

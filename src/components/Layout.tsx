@@ -17,6 +17,7 @@ export default function Layout() {
     getWeather("berlin").then(data => (
       setWeatherData(data)
     ))
+    console.log(weatherData)
   }, []);
   
   return (
