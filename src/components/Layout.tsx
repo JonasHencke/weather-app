@@ -5,6 +5,7 @@ import Week from "./week";
 import Highlight from "./Highlight";
 import example from "../example.json";
 import getWeather from "../utils/getWeatherData";
+import getWeatherForecast from "../utils/getWeatherForecast";
 
 export const WeatherContext = createContext(null);
 
@@ -12,9 +13,16 @@ export default function Layout() {
   type Weather = null | object;
 
   const [weatherData, setWeatherData] = useState<Weather>(null);
+  const [ForecastData, setForecastData] = useState<Weather>(null);
 
   useEffect(() => {
-    getWeather("berlin").then((data) => setWeatherData(data));
+    getWeather("berlin").then((data) => {
+      setWeatherData(data);
+      getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
+        setForecastData(data)
+      );
+      console.log(ForecastData);
+    });
   }, []);
 
   return (
