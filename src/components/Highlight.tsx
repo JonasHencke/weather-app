@@ -18,9 +18,12 @@ export default function Highlight() {
   const sunrise: string | null = ForecastData
     ? getTime(ForecastData.current.sunrise, ForecastData.timezone)
     : null;
-  const sunset: string | null = ForecastData ? getTime(ForecastData.current.sunset, ForecastData.timezone)
-  : null;
-  const pressure: string | null = ForecastData ? ForecastData.current.pressure : null;
+  const sunset: string | null = ForecastData
+    ? getTime(ForecastData.current.sunset, ForecastData.timezone)
+    : null;
+  const pressure: string | null = ForecastData
+    ? ForecastData.current.pressure
+    : null;
 
   return (
     <div className="highlight-component">
@@ -30,7 +33,8 @@ export default function Highlight() {
         {windSpeed}
       </div>
       <div className="highlight">
-        Sonenaufgang {sunrise} <br/><br/> Sonnenuntergang {sunset}
+        Sonenaufgang {sunrise} <br />
+        <br /> Sonnenuntergang {sunset}
       </div>
       <div className="highlight">
         <div>Feuchtigkeit:</div>

@@ -1,9 +1,10 @@
 import React from "react";
 import icon from "../SVGs/night.svg";
 import cloud from "../SVGs/cloudy.svg";
-import rain from "../SVGs/rain-svgrepo-com.svg";
 import { useContext } from "react";
 import { WeatherContext } from "./Layout";
+import getTime from "../utils/getTime";
+import getWeekday from "../utils/getWeekday";
 
 export default function Overview() {
   const { weatherData, ForecastData } = useContext(WeatherContext);
@@ -11,27 +12,30 @@ export default function Overview() {
     ? Math.floor(weatherData.main.temp - 273.15)
     : null;
   const weatherStatus = weatherData ? weatherData.weather[0].description : null;
-  const DateObj =
-    weatherData && new Date((weatherData.dt + weatherData.timezone) * 1000);
-  const Hours = weatherData && DateObj.getUTCHours();
-  const Minutes = weatherData && DateObj.getUTCMinutes();
+  const weekday = ForecastData
+    ? getWeekday(ForecastData.current.dt, ForecastData.timezone)
+    : null;
+  const timeOfDay = ForecastData
+    ? getTime(ForecastData.current.dt, ForecastData.timezone)
+    : null;
+  const location = weatherData
+    ? `${weatherData.name} , ${weatherData.sys.country}`
+    : null;
+
   return (
     <div className="overview-component">
       <div className="searchbar">Search</div>
       <img className="overview-image" src={icon} />
       <p className="overview-temperature">{temperature}°C</p>
       <p className="overview-date">
-        Montag, {Hours}:{Minutes}
+        {weekday}, {timeOfDay}
       </p>
       <p className="overview-wrapper">
         <img src={cloud} />
         {weatherStatus}
       </p>
-      <p className="overview-wrapper">
-        <img src={rain} />
-        Regenwahrscheinlichkeit: <br /> 30%{" "}
-      </p>
-      <div className="overview-location">Leipzig, Sachsen, Deutschland</div>
+      <p className="overview-wrapper"></p>
+      <div className="overview-location">{location}</div>
     </div>
   );
 }

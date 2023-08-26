@@ -1,16 +1,15 @@
 import React, { useState, useEffect, createContext } from "react";
 import Overview from "./Overview";
 import Header from "./Header";
-import Week from "./week";
+import Week from "./Week";
 import Highlight from "./Highlight";
 import getWeather from "../utils/getWeatherData";
 import getWeatherForecast from "../utils/getWeatherForecast";
 
-export const WeatherContext = createContext(null);
+type Weather = null | object;
+export const WeatherContext = createContext<Weather>(null);
 
 export default function Layout() {
-  type Weather = null | object;
-
   const [weatherData, setWeatherData] = useState<Weather>(null);
   const [ForecastData, setForecastData] = useState<Weather>(null);
 
@@ -19,9 +18,8 @@ export default function Layout() {
       setWeatherData(data);
       getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
         setForecastData(data)
-      );
-      console.log(ForecastData);
-    });
+      )
+    })
   }, []);
 
   return (
