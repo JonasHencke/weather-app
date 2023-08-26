@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { WeatherContext } from "./Layout";
 
 export default function Highlight() {
-  const weatherData = useContext(WeatherContext);
-  const visibility = weatherData ? `${weatherData.visibility / 1000} km` : null;
-  const humidity = weatherData ? `${weatherData.main.humidity} %` : null;
-  const windSpeed = weatherData ? weatherData.wind.speed + " km/h" : null;
-
+  const { weatherData, ForecastData } = useContext(WeatherContext);
+  const visibility: string | null  = weatherData ? `${weatherData.visibility / 1000} km` : null;
+  const humidity: string | null  = weatherData ? `${weatherData.main.humidity} %` : null;
+  const windSpeed: string | null  = weatherData ? weatherData.wind.speed + " km/h" : null;
+  const UVIndex: string | null = ForecastData ? ForecastData.current.uvi : null
   return (
     <div className="highlight-component">
-      <div className="highlight">UV Index</div>
+      <div className="highlight">{UVIndex}</div>
       <div className="highlight">
         Wind:
         {windSpeed}

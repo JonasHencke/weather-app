@@ -3,7 +3,6 @@ import Overview from "./Overview";
 import Header from "./Header";
 import Week from "./week";
 import Highlight from "./Highlight";
-import example from "../example.json";
 import getWeather from "../utils/getWeatherData";
 import getWeatherForecast from "../utils/getWeatherForecast";
 
@@ -26,7 +25,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <WeatherContext.Provider value={weatherData}>
+    <WeatherContext.Provider value={{weatherData, ForecastData}}>
       <div className="flex-layout">
         <div className="flex-left">
           <Overview />

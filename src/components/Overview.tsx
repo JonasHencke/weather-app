@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { WeatherContext } from "./Layout";
 
 export default function Overview() {
-  const weatherData = useContext(WeatherContext);
+  const { weatherData, ForecastData } = useContext(WeatherContext);
   const temperature = weatherData
     ? Math.floor(weatherData.main.temp - 273.15)
     : null;
