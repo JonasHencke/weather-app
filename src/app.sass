@@ -15,9 +15,11 @@ body
   color: #31456a
 /* --------------------- */
 /* typography mixins */
+@mixin font-size-xl
+  font-size: clamp(0.5rem, 3vw, 4rem)
 
 @mixin font-size-l
-  font-size: clamp(0.5rem, 3vw, 6rem)
+  font-size: clamp(0.5rem, 2.5vw, 3rem)
 
 @mixin font-size-m
   font-size: clamp(0.5rem, 1.25vw, 2rem)
@@ -85,7 +87,7 @@ body
   
 
 .overview-temperature
-  @include font-size-l
+  @include font-size-xl
   margin: 0
   margin-left: 10%
   align-self: start
@@ -222,3 +224,32 @@ body
   display: flex
   justify-content: center
   align-items: center
+  flex-direction: column
+
+.highlight-heading
+  text-align: start
+  @include font-size-m
+  height: 15%
+  align-self: start
+  padding-left: 10%
+
+.highlight-body
+  display: flex
+  flex-direction: column
+  align-items: center
+  height: 75%
+
+.unit
+  @include font-size-m
+
+.highlight-number
+  display: flex
+  justify-content: center
+  align-items: center
+  @include font-size-xl
+  height: 70%
+  
+.highlight-message
+  @include font-size-s
+  
+  

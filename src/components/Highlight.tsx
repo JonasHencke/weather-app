@@ -5,15 +5,16 @@ import getTime from "../utils/getTime";
 import { WeatherContextType } from "./Layout";
 
 export default function Highlight() {
-  const { weatherData, ForecastData } = useContext<WeatherContextType>(WeatherContext);
+  const { weatherData, ForecastData } =
+    useContext<WeatherContextType>(WeatherContext);
   const visibility: string | null = weatherData
-    ? `${weatherData.visibility / 1000} km`
+    ? weatherData.visibility / 1000
     : null;
   const humidity: string | null = weatherData
-    ? `${weatherData.main.humidity} %`
+    ? weatherData.main.humidity
     : null;
   const windSpeed: string | null = weatherData
-    ? weatherData.wind.speed + " km/h"
+    ? weatherData.wind.speed
     : null;
   const UVIndex: string | null = ForecastData ? ForecastData.current.uvi : null;
   const sunrise: string | null = ForecastData
@@ -28,24 +29,49 @@ export default function Highlight() {
 
   return (
     <div className="highlight-component">
-      <div className="highlight">UV-Index: {UVIndex}</div>
       <div className="highlight">
-        Wind:
-        {windSpeed}
+        <div className="highlight-heading">UV Index</div>
+        <div className="highlight-body">
+          <div className="highlight-number">{UVIndex}</div>
+          <div className="highlight-message">kein Schutz notwendig 🙂</div>
+        </div>
       </div>
       <div className="highlight">
-        Sonenaufgang {sunrise} <br />
-        <br /> Sonnenuntergang {sunset}
+        <div className="highlight-heading">Wind</div>
+        <div className="highlight-body">
+          <div className="highlight-number">{windSpeed} <span className="unit">km/h</span></div>
+          <div className="highlight-message">Windrichtung: Nordosten 💨</div>
+          </div>
       </div>
       <div className="highlight">
-        <div>Feuchtigkeit:</div>
-        {humidity}
+        <div className="highlight-heading">Sonnenauf- & untergang</div>
+        <div className="highlight-body">
+          {sunrise} <br />
+          <br />
+          {sunset}
+        </div>
       </div>
       <div className="highlight">
-        Sichtbarkeit:
-        {visibility}
+        <div className="highlight-heading">Feuchtigkeit</div>
+        <div className="highlight-body">
+          <div className="highlight-number">{humidity} <span className="unit">%</span></div>
+          <div className="highlight-message"> der Taupunkt liegt bei 12°C 💧</div>
+        </div>
       </div>
-      <div className="highlight">Luftdruck: {pressure} hPA</div>
+      <div className="highlight">
+        <div className="highlight-heading">Sichtbarkeit</div>
+        <div className="highlight-body">
+        <div className="highlight-number">{visibility} <span className="unit">km</span></div>
+        <div className="highlight-message"> Es herrscht klare Sicht 👁️</div>
+        </div>
+      </div>
+      <div className="highlight">
+        <div className="highlight-heading">Luftdruck</div>
+        <div className="highlight-body">
+        <div className="highlight-number">{pressure} <span className="unit">hPA</span></div>
+        <div className="highlight-message"> Tiefdruck ⬇️</div>
+        </div>
+      </div>
     </div>
   );
 }
