@@ -6,7 +6,7 @@ import { WeatherContextType } from "./Layout";
 
 export default function Highlight() {
   const { weatherData, ForecastData } =
-    useContext<WeatherContextType>(WeatherContext);
+    useContext<WeatherContextType | null>(WeatherContext);
   const visibility: string | null = weatherData
     ? weatherData.visibility / 1000
     : null;

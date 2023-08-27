@@ -4,8 +4,13 @@ import sunny from "../SVGs/cloudy-day-3.svg";
 import rainy from "../SVGs/rainy-3.svg";
 import night from "../SVGs/night.svg";
 import thunder from "../SVGs/thunder.svg";
+import { useContext } from "react";
+import { WeatherContextType } from "./Layout";
+import { WeatherContext } from "./Layout";
 
 export default function Week() {
+  const { weatherData, ForecastData } =
+    useContext<WeatherContextType | null>(WeatherContext);
   return (
     <div className="week-component">
       <div className="weekday">
