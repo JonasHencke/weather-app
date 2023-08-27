@@ -2,9 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import { WeatherContext } from "./Layout";
 import getTime from "../utils/getTime";
+import { WeatherContextType } from "./Layout";
 
 export default function Highlight() {
-  const { weatherData, ForecastData } = useContext(WeatherContext);
+  const { weatherData, ForecastData } = useContext<WeatherContextType>(WeatherContext);
   const visibility: string | null = weatherData
     ? `${weatherData.visibility / 1000} km`
     : null;

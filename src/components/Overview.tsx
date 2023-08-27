@@ -5,9 +5,10 @@ import { useContext } from "react";
 import { WeatherContext } from "./Layout";
 import getTime from "../utils/getTime";
 import getWeekday from "../utils/getWeekday";
+import { WeatherContextType } from "./Layout";
 
 export default function Overview() {
-  const { weatherData, ForecastData } = useContext(WeatherContext);
+  const { weatherData, ForecastData} = useContext<WeatherContextType>(WeatherContext)
   const temperature = weatherData
     ? Math.floor(weatherData.main.temp - 273.15)
     : null;

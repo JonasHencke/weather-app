@@ -13,6 +13,17 @@ html, body, #root
 body
   background-color: #e3edf7
   color: #31456a
+/* --------------------- */
+/* typography mixins */
+
+@mixin font-size-l
+  font-size: clamp(0.5rem, 3vw, 6rem)
+
+@mixin font-size-m
+  font-size: clamp(0.5rem, 1.25vw, 2rem)
+
+@mixin font-size-s
+  font-size: clamp(0.5rem, 1.15vw, 1.5rem)
 
 /* --------------------- */
 /* Neumorphism mixins */
@@ -70,14 +81,17 @@ body
   display: flex
   align-items: center
   justify-content: center
+  @include font-size-s
+  
 
 .overview-temperature
+  @include font-size-l
   margin: 0
   margin-left: 10%
-  font-size: 60px
   align-self: start
 
 .overview-date
+  @include font-size-s
   margin: 0
   margin-left: 10%
   padding-bottom: 10%
@@ -85,6 +99,7 @@ body
   border-bottom: 1px solid black
 
 .overview-wrapper
+  @include font-size-m
   display: flex
   width: 80%
   align-self: center
@@ -95,13 +110,16 @@ body
 
 .overview-location
   @include neumorphism-default(80%, null )
+  font-size: clamp(0.5rem, 1.25vw, 1.9rem)
   color: #e3edf7
   margin-top: 2em
+  margin-bottom: 2em
   padding: 1.5em 0
   text-align: center
   border-radius: 10px
   background-image: url("https://d13k13wj6adfdf.cloudfront.net/urban_areas/leipzig_web-a64d74e819.jpg")
   background-size: 100% 100%
+  text-shadow: 0px 2px 3px rgb(0 0 0 / 100%)
 
 /* --------------------- */
 /* Header component */
@@ -118,17 +136,21 @@ body
 
 .today-active
   @include neumorphism-pressed(null , 100%)
+  @include font-size-s
   display: flex
   justify-content: center
   align-items: center
   aspect-ratio: 3 / 1
+  
 
 .week-inactive
   @include neumorphism-default(null , 100%)
+  @include font-size-s
   display: flex
   justify-content: center
   align-items: center
   aspect-ratio: 3 / 1
+  
 
 .temperature-container
   width: 13%
@@ -138,20 +160,24 @@ body
 
 .celsius-active
   @include neumorphism-pressed(null , 100%)
+  @include font-size-s
   display: flex
   justify-content: center
   align-items: center
   aspect-ratio: 1 / 1
   border-radius: 30px
   text-align: center
+  
 
 .fahrenheidt-inactive
   @include neumorphism-default(null , 100%)
+  @include font-size-s
   display: flex
   justify-content: center
   align-items: center
   border-radius: 30px
   aspect-ratio: 1 / 1
+  
 
 /* --------------------- */
 /* Week component */
