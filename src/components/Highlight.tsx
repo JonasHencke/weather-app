@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { WeatherContext } from "./Layout";
 import getTime from "../utils/getTime";
 import { WeatherContextType } from "./Layout";
+import sunriseSVG from "../SVGs/sunrise-cropped.svg"
+import sunsetSVG from "../SVGs/sunset-cropped.svg"
 
 export default function Highlight() {
   const { weatherData, ForecastData } =
@@ -45,10 +47,9 @@ export default function Highlight() {
       </div>
       <div className="highlight">
         <div className="highlight-heading">Sonnenauf- & untergang</div>
-        <div className="highlight-body">
-          {sunrise} <br />
-          <br />
-          {sunset}
+        <div className="highlight-body sunrise-sunset">
+          <div className="hightlight-sunrise"><img src={sunriseSVG}/><div>{sunrise}</div></div>
+          <div className="hightlight-sunrise"><img src={sunsetSVG}/><div>{sunset}</div></div>
         </div>
       </div>
       <div className="highlight">
