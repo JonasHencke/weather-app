@@ -13,7 +13,7 @@ import returnPressure from "../utils/returnPressure";
 export default function Highlight() {
   const { weatherData, ForecastData } =
     useContext<WeatherContextType | null>(WeatherContext);
-  const visibility: string | null = weatherData
+  const visibility: number = weatherData
     ? weatherData.visibility / 1000
     : null;
   const humidity: string | null = weatherData
@@ -46,7 +46,7 @@ export default function Highlight() {
         <div className="highlight-heading">Wind</div>
         <div className="highlight-body">
           <div className="highlight-number">{windSpeed} <span className="unit">km/h</span></div>
-          <div className="highlight-message">Windrichtung: {returnWindDirection(ForecastData.current.wind_deg)} 🍃</div>
+          <div className="highlight-message">Windrichtung: {ForecastData ? returnWindDirection(ForecastData.current.wind_deg) : null} 🍃</div>
           </div>
       </div>
       <div className="highlight">

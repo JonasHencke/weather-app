@@ -19,14 +19,13 @@ export default function Layout() {
   const [ForecastData, setForecastData] = useState<Weather>(null);
 
   useEffect(() => {
-    getWeather("leipzig").then((data) => {
+    getWeather("duisburg").then((data) => {
       setWeatherData(data);
       getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
         setForecastData(data)
       )
     })
   }, []);
-
   return (
     <WeatherContext.Provider value={{weatherData, ForecastData}}>
       <div className="flex-layout">
