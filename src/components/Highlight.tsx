@@ -5,6 +5,10 @@ import getTime from "../utils/getTime";
 import { WeatherContextType } from "./Layout";
 import sunriseSVG from "../SVGs/sunrise-cropped.svg"
 import sunsetSVG from "../SVGs/sunset-cropped.svg"
+import sunprotectionMessage from "../utils/sunProtectionMessage";
+import returnWindDirection from "../utils/returnWindDirection";
+import visibilityMessage from "../utils/VisibilityMessage";
+import returnPressure from "../utils/returnPressure";
 
 export default function Highlight() {
   const { weatherData, ForecastData } =
@@ -35,14 +39,14 @@ export default function Highlight() {
         <div className="highlight-heading">UV Index</div>
         <div className="highlight-body">
           <div className="highlight-number">{UVIndex}</div>
-          <div className="highlight-message">kein Schutz notwendig 🙂</div>
+          <div className="highlight-message">{sunprotectionMessage(UVIndex)}</div>
         </div>
       </div>
       <div className="highlight">
         <div className="highlight-heading">Wind</div>
         <div className="highlight-body">
           <div className="highlight-number">{windSpeed} <span className="unit">km/h</span></div>
-          <div className="highlight-message">Windrichtung: Nordosten 💨</div>
+          <div className="highlight-message">Windrichtung: {returnWindDirection(ForecastData.current.wind_deg)} 🍃</div>
           </div>
       </div>
       <div className="highlight">
@@ -63,14 +67,14 @@ export default function Highlight() {
         <div className="highlight-heading">Sichtbarkeit</div>
         <div className="highlight-body">
         <div className="highlight-number">{visibility} <span className="unit">km</span></div>
-        <div className="highlight-message"> Es herrscht klare Sicht 👁️</div>
+        <div className="highlight-message">{visibilityMessage(visibility)}</div>
         </div>
       </div>
       <div className="highlight">
         <div className="highlight-heading">Luftdruck</div>
         <div className="highlight-body">
         <div className="highlight-number">{pressure} <span className="unit">hPA</span></div>
-        <div className="highlight-message"> Tiefdruck ⬇️</div>
+        <div className="highlight-message">{returnPressure(pressure)}</div>
         </div>
       </div>
     </div>
