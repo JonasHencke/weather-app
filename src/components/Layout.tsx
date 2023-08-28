@@ -19,7 +19,7 @@ export default function Layout() {
   const [ForecastData, setForecastData] = useState<Weather>(null);
 
   useEffect(() => {
-    getWeather("duisburg").then((data) => {
+    getWeather("halle").then((data) => {
       setWeatherData(data);
       getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
         setForecastData(data)

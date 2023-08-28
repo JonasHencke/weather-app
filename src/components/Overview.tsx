@@ -4,40 +4,42 @@ import { WeatherContext } from "./Layout";
 import getTime from "../utils/getTime";
 import getWeekday from "../utils/getWeekday";
 import { WeatherContextType } from "./Layout";
-import day from "../SVGs/day.svg"
-import cloudyDay from "../SVGs/cloudy-day-3.svg"
+import day from "../SVGs/day.svg";
+import cloudyDay from "../SVGs/cloudy-day-3.svg";
 import cloudy from "../SVGs/cloudy.svg";
-import showerRain from "../SVGs/rainy-6.svg"
-import rain from "../SVGs/rainy-3.svg"
-import thunder from "../SVGs/thunder.svg"
-import snow from "../SVGs/snowy-6.svg"
-import night from "../SVGs/night.svg"
-import cloudyNight from "../SVGs/cloudy-night-3.svg"
+import showerRain from "../SVGs/rainy-6.svg";
+import rain from "../SVGs/rainy-3.svg";
+import thunder from "../SVGs/thunder.svg";
+import snow from "../SVGs/snowy-6.svg";
+import night from "../SVGs/night.svg";
+import cloudyNight from "../SVGs/cloudy-night-3.svg";
 
 function pickIcon(id: string) {
   if (id == "01d") {
-    return day
+    return day;
   } else if (id == "02d") {
-    return cloudyDay
+    return cloudyDay;
   } else if (id == "03d" || id == "04d" || id == "03n" || id == "04n") {
-    return cloudy
+    return cloudy;
   } else if (id == "09d" || id == "09n") {
-    return showerRain
-  }else if (id == "10d" || id == "10n") {
-    return rain
+    return showerRain;
+  } else if (id == "10d" || id == "10n") {
+    return rain;
   } else if (id == "11d" || id == "11n") {
-    return thunder 
+    return thunder;
   } else if (id == "13d" || id == "13n") {
-    return snow
-  } else if (id == "01n"){
-    return night
+    return snow;
+  } else if (id == "01n") {
+    return night;
   } else if (id == "02n") {
-    return cloudyNight
+    return cloudyNight;
   }
 }
 
 export default function Overview() {
-  const { weatherData, ForecastData} = useContext<WeatherContextType | null>(WeatherContext)
+  const { weatherData, ForecastData } = useContext<WeatherContextType | null>(
+    WeatherContext
+  );
   const temperature = weatherData
     ? Math.floor(weatherData.main.temp - 273.15)
     : null;
@@ -51,12 +53,12 @@ export default function Overview() {
   const location = weatherData
     ? `${weatherData.name} , ${weatherData.sys.country}`
     : null;
-  const icon = weatherData ? pickIcon(weatherData.weather[0].icon) : null
+  const icon = weatherData ? pickIcon(weatherData.weather[0].icon) : null;
 
   return (
     <div className="overview-component">
       <div className="searchbar">Search</div>
-      <img className="overview-image" src={icon}/>
+      <img className="overview-image" src={icon} />
       <p className="overview-temperature">{temperature}°C</p>
       <p className="overview-date">
         {weekday}, {timeOfDay}
