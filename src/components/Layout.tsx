@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext } from "react";
 import Overview from "./Overview";
 import Header from "./Header";
 import Week from "./Week";
+import Hour from "./Hour"
 import Highlight from "./Highlight";
 import getWeather from "../utils/getWeatherData";
 import getWeatherForecast from "../utils/getWeatherForecast";
@@ -19,7 +20,7 @@ export default function Layout() {
   const [ForecastData, setForecastData] = useState<Weather>(null);
 
   useEffect(() => {
-    getWeather("halle").then((data) => {
+    getWeather("tokyo").then((data) => {
       setWeatherData(data);
       getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
         setForecastData(data)
@@ -34,7 +35,7 @@ export default function Layout() {
         </div>
         <div className="flex-right">
           <Header />
-          <Week />
+          <Hour />
           <Highlight />
         </div>
       </div>

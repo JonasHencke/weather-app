@@ -2,7 +2,6 @@ import React from "react";
 import { useContext } from "react";
 import { WeatherContextType } from "./Layout";
 import { WeatherContext } from "./Layout";
-import getTime from "../utils/getTime";
 import getWeekday from "../utils/getWeekday";
 import day from "../SVGs/day.svg";
 import cloudyDay from "../SVGs/cloudy-day-3.svg";
@@ -42,12 +41,6 @@ export default function Week() {
   return (
     <div className="week-component">
       <div className="weekday">
-        {ForecastData ? getWeekday(ForecastData.daily[0].dt, ForecastData.timezone).slice(0,2) : null}
-        <img src={ForecastData ? pickIcon(ForecastData.daily[0].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[0].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[0].temp.min - 273.15) : null}°C</p>
-      </div>
-      <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[1].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[1].weather[0].icon) : null} />
         <p>{ForecastData ? Math.floor(ForecastData.daily[1].temp.max - 273.15) : null}°C /
@@ -82,6 +75,12 @@ export default function Week() {
         <img src={ForecastData ? pickIcon(ForecastData.daily[6].weather[0].icon) : null} />
         <p>{ForecastData ? Math.floor(ForecastData.daily[6].temp.max - 273.15) : null}°C /
         {ForecastData ? Math.floor(ForecastData.daily[6].temp.min - 273.15) : null}°C</p>
+      </div>
+      <div className="weekday">
+        {ForecastData ? getWeekday(ForecastData.daily[7].dt, ForecastData.timezone).slice(0,2) : null}
+        <img src={ForecastData ? pickIcon(ForecastData.daily[7].weather[0].icon) : null} />
+        <p>{ForecastData ? Math.floor(ForecastData.daily[7].temp.max - 273.15) : null}°C /
+        {ForecastData ? Math.floor(ForecastData.daily[7].temp.min - 273.15) : null}°C</p>
       </div>
     </div>
   );
