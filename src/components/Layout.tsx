@@ -18,7 +18,8 @@ export const WeatherContext = createContext<WeatherContextType | null>(null);
 export default function Layout() {
   const [weatherData, setWeatherData] = useState<Weather>(null);
   const [ForecastData, setForecastData] = useState<Weather>(null);
-
+  const [temperatureUnit, setTemperatureUnit] = useState<"Celsius" | "Fahrenheit">("celsius")
+  const [timeframe, setTimeframe] = useState<"Week" | "Hour">("Week")
   useEffect(() => {
     getWeather("tokyo").then((data) => {
       setWeatherData(data);
@@ -28,14 +29,14 @@ export default function Layout() {
     })
   }, []);
   return (
-    <WeatherContext.Provider value={{weatherData, ForecastData}}>
+    <WeatherContext.Provider value={{weatherData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe}}>
       <div className="flex-layout">
         <div className="flex-left">
           <Overview />
         </div>
         <div className="flex-right">
           <Header />
-          <Hour />
+          {timeframe == "Week" ? <Week/> : <Hour/> }
           <Highlight />
         </div>
       </div>

@@ -1,15 +1,25 @@
-import React from "react"
+import React from "react";
+import { useContext } from "react";
+import { WeatherContextType } from "./Layout";
+import { WeatherContext } from "./Layout";
+
+interface Weatherfunctions {
+
+}
 
 export default function Header() {
-    return (
+  const { setTemperatureUnit, setTimeframe } =
+  useContext(WeatherContext);
+  return (
     <div className="header-component">
-        <div className="timeframe-container">
-            <div className="today-active">Heute</div>
-            <div className="week-inactive">Woche</div>
-        </div>
-        <div className="temperature-container">
-            <div className="celsius-active"> C°</div>
-            <div className="fahrenheidt-inactive"> F°</div>
-        </div>
-    </div>)
+      <div className="timeframe-container">
+        <div className="today-active" onClick={() => setTimeframe("Hour")}>Heute</div>
+        <div className="week-inactive" onClick={() => setTimeframe("Week")}>Woche</div>
+      </div>
+      <div className="temperature-container">
+        <div className="celsius-active" onClick={() => setTemperatureUnit("Celsius")}> C°</div>
+        <div className="fahrenheidt-inactive" onClick={() => setTemperatureUnit("Fahrenheit")}> F°</div>
+      </div>
+    </div>
+  );
 }
