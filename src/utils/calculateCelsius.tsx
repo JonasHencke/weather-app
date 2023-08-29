@@ -1,3 +1,3 @@
 export default function calculateCelsius(kelvin: number) {
-    return kelvin - 273.15
+    return Math.floor(kelvin - 273.15) + "°C"
 }
