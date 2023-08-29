@@ -3,10 +3,6 @@ import { useContext } from "react";
 import { WeatherContextType } from "./Layout";
 import { WeatherContext } from "./Layout";
 
-interface Weatherfunctions {
-
-}
-
 export default function Header() {
   const { setTemperatureUnit, setTimeframe } =
   useContext(WeatherContext);

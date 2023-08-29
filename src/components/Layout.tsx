@@ -10,6 +10,9 @@ import getWeatherForecast from "../utils/getWeatherForecast";
 export interface WeatherContextType {
   weatherData: null | object | string;
   ForecastData: null | object | string;
+  setTemperatureUnit: React.Dispatch<React.SetStateAction<"Celsius" | "Fahrenheit">>;
+  setTimeframe: React.Dispatch<React.SetStateAction<"Week" | "Hour">>;
+  temperatureUnit: "Celsius" | "Fahrenheit"
 }
 type Weather = null | object
 
@@ -18,7 +21,7 @@ export const WeatherContext = createContext<WeatherContextType | null>(null);
 export default function Layout() {
   const [weatherData, setWeatherData] = useState<Weather>(null);
   const [ForecastData, setForecastData] = useState<Weather>(null);
-  const [temperatureUnit, setTemperatureUnit] = useState<"Celsius" | "Fahrenheit">("celsius")
+  const [temperatureUnit, setTemperatureUnit] = useState<"Celsius" | "Fahrenheit">("Celsius")
   const [timeframe, setTimeframe] = useState<"Week" | "Hour">("Week")
   useEffect(() => {
     getWeather("tokyo").then((data) => {
