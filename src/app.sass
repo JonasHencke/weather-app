@@ -136,16 +136,15 @@ body
   display: flex
   gap: 2em
 
-.today-active
+.timeframe-active
   @include neumorphism-pressed(null , 100%)
   @include font-size-s
   display: flex
   justify-content: center
   align-items: center
   aspect-ratio: 3 / 1
-  
 
-.week-inactive
+.timeframe-inactive
   @include neumorphism-default(null , 100%)
   @include font-size-s
   display: flex
@@ -160,7 +159,7 @@ body
   display: flex
   justify-content: space-between
 
-.celsius-active
+.temperature-active
   @include neumorphism-pressed(null , 100%)
   @include font-size-s
   display: flex
@@ -171,7 +170,7 @@ body
   text-align: center
   
 
-.fahrenheidt-inactive
+.temperature-inactive
   @include neumorphism-default(null , 100%)
   @include font-size-s
   display: flex
