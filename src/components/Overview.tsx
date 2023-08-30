@@ -13,6 +13,7 @@ import thunder from "../SVGs/thunder.svg";
 import snow from "../SVGs/snowy-6.svg";
 import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
+import calculateTemperature from "../utils/calculateTemperature";
 
 function pickIcon(id: string) {
   if (id == "01d") {
@@ -37,12 +38,10 @@ function pickIcon(id: string) {
 }
 
 export default function Overview() {
-  const { weatherData, ForecastData } = useContext<WeatherContextType | null>(
+  const { weatherData, ForecastData, temperatureUnit } = useContext<WeatherContextType>(
     WeatherContext
   );
-  const temperature = weatherData
-    ? Math.floor(weatherData.main.temp - 273.15)
-    : null;
+  const temperature = weatherData ? calculateTemperature(temperatureUnit, weatherData.main.temp) : null;
   const weatherStatus = weatherData ? weatherData.weather[0].description : null;
   const weekday = ForecastData
     ? getWeekday(ForecastData.current.dt, ForecastData.timezone)
@@ -59,7 +58,7 @@ export default function Overview() {
     <div className="overview-component">
       <div className="searchbar">Search</div>
       <img className="overview-image" src={icon} />
-      <p className="overview-temperature">{temperature}°C</p>
+      <p className="overview-temperature">{temperature}</p>
       <p className="overview-date">
         {weekday}, {timeOfDay}
       </p>

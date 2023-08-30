@@ -12,6 +12,7 @@ import thunder from "../SVGs/thunder.svg";
 import snow from "../SVGs/snowy-6.svg";
 import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
+import calculateTemperature from "../utils/calculateTemperature";
 
 function pickIcon(id: string) {
   if (id == "01d") {
@@ -36,51 +37,51 @@ function pickIcon(id: string) {
 }
 
 export default function Week() {
-  const { weatherData, ForecastData } =
-    useContext<WeatherContextType | null>(WeatherContext);
+  const {ForecastData, temperatureUnit} =
+    useContext<WeatherContextType>(WeatherContext);
   return (
     <div className="week-component">
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[1].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[1].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[1].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[1].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[1].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[1].temp.min) : null}`}</p>
       </div>
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[2].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[2].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[2].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[2].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[2].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[2].temp.min) : null}`}</p>
       </div>
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[3].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[3].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[3].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[3].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[3].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[3].temp.min) : null}`}</p>
       </div>
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[4].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[4].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[4].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[4].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[4].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[4].temp.min) : null}`}</p>
       </div>
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[5].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[5].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[5].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[5].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[5].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[5].temp.min) : null}`}</p>
       </div>
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[6].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[6].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[6].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[6].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[6].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[6].temp.min) : null}`}</p>
       </div>
       <div className="weekday">
         {ForecastData ? getWeekday(ForecastData.daily[7].dt, ForecastData.timezone).slice(0,2) : null}
         <img src={ForecastData ? pickIcon(ForecastData.daily[7].weather[0].icon) : null} />
-        <p>{ForecastData ? Math.floor(ForecastData.daily[7].temp.max - 273.15) : null}°C /
-        {ForecastData ? Math.floor(ForecastData.daily[7].temp.min - 273.15) : null}°C</p>
+        <p>{`${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[7].temp.max) : null} /    
+        ${ForecastData ? calculateTemperature(temperatureUnit, ForecastData.daily[7].temp.min) : null}`}</p>
       </div>
     </div>
   );

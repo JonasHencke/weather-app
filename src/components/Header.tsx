@@ -1,11 +1,10 @@
 import React from "react";
 import { useContext } from "react";
-import { WeatherContextType } from "./Layout";
-import { WeatherContext } from "./Layout";
+import { WeatherContext, WeatherContextType } from "./Layout";
 
 export default function Header() {
   const { setTemperatureUnit, setTimeframe } =
-  useContext(WeatherContext);
+  useContext<WeatherContextType>(WeatherContext);
   return (
     <div className="header-component">
       <div className="timeframe-container">

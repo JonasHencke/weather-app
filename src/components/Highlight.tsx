@@ -9,10 +9,11 @@ import sunprotectionMessage from "../utils/sunProtectionMessage";
 import returnWindDirection from "../utils/returnWindDirection";
 import visibilityMessage from "../utils/VisibilityMessage";
 import returnPressure from "../utils/returnPressure";
+import calculateTemperature from "../utils/calculateTemperature";
 
 export default function Highlight() {
-  const { weatherData, ForecastData } =
-    useContext<WeatherContextType | null>(WeatherContext);
+  const { weatherData, ForecastData, temperatureUnit } =
+    useContext<WeatherContextType>(WeatherContext);
   const visibility: number = weatherData
     ? weatherData.visibility / 1000
     : null;
@@ -31,6 +32,9 @@ export default function Highlight() {
     : null;
   const pressure: string | null = ForecastData
     ? ForecastData.current.pressure
+    : null;
+    const dew_point: string | null = ForecastData
+    ? calculateTemperature( temperatureUnit , ForecastData.current.dew_point)
     : null;
 
   return (
@@ -60,7 +64,7 @@ export default function Highlight() {
         <div className="highlight-heading">Feuchtigkeit</div>
         <div className="highlight-body">
           <div className="highlight-number">{humidity} <span className="unit">%</span></div>
-          <div className="highlight-message"> der Taupunkt liegt bei 12°C 💧</div>
+          <div className="highlight-message"> der Taupunkt liegt bei {dew_point} 💧</div>
         </div>
       </div>
       <div className="highlight">

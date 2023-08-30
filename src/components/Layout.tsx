@@ -12,19 +12,29 @@ export interface WeatherContextType {
   ForecastData: null | object | string;
   setTemperatureUnit: React.Dispatch<React.SetStateAction<"Celsius" | "Fahrenheit">>;
   setTimeframe: React.Dispatch<React.SetStateAction<"Week" | "Hour">>;
-  temperatureUnit: "Celsius" | "Fahrenheit"
+  temperatureUnit: "Celsius" | "Fahrenheit";
+  timeframe: "Week" | "Hour"
 }
-type Weather = null | object
 
-export const WeatherContext = createContext<WeatherContextType | null>(null);
+const initialWeather: WeatherContextType = {
+  weatherData: null,
+  ForecastData: null,
+  setTemperatureUnit: temperatureUnit => { },
+  setTimeframe: timeframe => { },
+  temperatureUnit: "Celsius",
+  timeframe: "Week",
+}
+
+export const WeatherContext = createContext<WeatherContextType>(initialWeather);
 
 export default function Layout() {
-  const [weatherData, setWeatherData] = useState<Weather>(null);
-  const [ForecastData, setForecastData] = useState<Weather>(null);
+  const [weatherData, setWeatherData] = useState<null | object>(null);
+  const [ForecastData, setForecastData] = useState<null | object>(null);
   const [temperatureUnit, setTemperatureUnit] = useState<"Celsius" | "Fahrenheit">("Celsius")
   const [timeframe, setTimeframe] = useState<"Week" | "Hour">("Week")
+
   useEffect(() => {
-    getWeather("tokyo").then((data) => {
+    getWeather("leipzig").then((data) => {
       setWeatherData(data);
       getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
         setForecastData(data)
@@ -32,7 +42,7 @@ export default function Layout() {
     })
   }, []);
   return (
-    <WeatherContext.Provider value={{weatherData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe}}>
+    <WeatherContext.Provider value={{weatherData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe, timeframe}}>
       <div className="flex-layout">
         <div className="flex-left">
           <Overview />

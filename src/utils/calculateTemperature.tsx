@@ -3,8 +3,8 @@ import calculateFahrenheit from "./calculateFahrenheidt";
 
 export default function calculateTemperature(unitState: string, Kelvin: number) {
     if (unitState == "Celsius") {
-        calculateCelsius(Kelvin)
+        return calculateCelsius(Kelvin)
     } else if (unitState == "Fahrenheit") {
-        calculateFahrenheit(Kelvin)
+        return calculateFahrenheit(Kelvin)
     }
 }
