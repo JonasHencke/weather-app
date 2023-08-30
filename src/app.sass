@@ -84,7 +84,6 @@ body
   align-items: center
   justify-content: center
   @include font-size-s
-  
 
 .overview-temperature
   @include font-size-xl
@@ -143,6 +142,8 @@ body
   justify-content: center
   align-items: center
   aspect-ratio: 3 / 1
+  font-size-adjust: 0.1
+  font-size: 99%
 
 .timeframe-inactive
   @include neumorphism-default(null , 100%)
@@ -151,7 +152,11 @@ body
   justify-content: center
   align-items: center
   aspect-ratio: 3 / 1
-  
+  cursor: pointer
+
+.timeframe-inactive:hover
+  box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.2), 5px 5px 9px rgba(94, 104, 121, 0.15)
+  font-size: 99.5%
 
 .temperature-container
   width: 13%
@@ -168,7 +173,7 @@ body
   aspect-ratio: 1 / 1
   border-radius: 30px
   text-align: center
-  
+  font-size: 98%
 
 .temperature-inactive
   @include neumorphism-default(null , 100%)
@@ -178,7 +183,11 @@ body
   align-items: center
   border-radius: 30px
   aspect-ratio: 1 / 1
-  
+  cursor: pointer
+
+.temperature-inactive:hover
+  box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.2), 5px 5px 9px rgba(94, 104, 121, 0.15)
+  font-size: 99.25%
 
 /* --------------------- */
 /* Week component */
@@ -250,7 +259,7 @@ body
   align-items: center
   @include font-size-xl
   height: 70%
-  
+
 .highlight-message
   @include font-size-s
 
@@ -258,7 +267,7 @@ body
   display: flex
   justify-content: space-evenly
   align-items: center
-  
+
 .hightlight-sunrise img
   width: 15%
 
@@ -268,4 +277,3 @@ body
 .sunrise-sunset
   gap: 15%
   margin-top: 5%
-  
