@@ -12,6 +12,8 @@ export interface WeatherContextType {
   ForecastData: null | object | string;
   setTemperatureUnit: React.Dispatch<React.SetStateAction<"Celsius" | "Fahrenheit">>;
   setTimeframe: React.Dispatch<React.SetStateAction<"Week" | "Hour">>;
+  setWeatherData: React.Dispatch<React.SetStateAction<object | null>>;
+  setForecastData: React.Dispatch<React.SetStateAction<object | null>>;
   temperatureUnit: "Celsius" | "Fahrenheit";
   timeframe: "Week" | "Hour"
 }
@@ -21,6 +23,8 @@ const initialWeather: WeatherContextType = {
   ForecastData: null,
   setTemperatureUnit: temperatureUnit => { },
   setTimeframe: timeframe => { },
+  setWeatherData: weatherData => { },
+  setForecastData: Data => { },
   temperatureUnit: "Celsius",
   timeframe: "Week",
 }
@@ -42,7 +46,7 @@ export default function Layout() {
     })
   }, []);
   return (
-    <WeatherContext.Provider value={{weatherData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe, timeframe}}>
+    <WeatherContext.Provider value={{weatherData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe, timeframe, setWeatherData, setForecastData}}>
       <div className="flex-layout">
         <div className="flex-left">
           <Overview />

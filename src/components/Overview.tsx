@@ -14,6 +14,8 @@ import snow from "../SVGs/snowy-6.svg";
 import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
 import calculateTemperature from "../utils/calculateTemperature";
+import getWeather from "../utils/getWeatherData";
+import getWeatherForecast from "../utils/getWeatherForecast";
 
 function pickIcon(id: string) {
   if (id == "01d") {
@@ -38,7 +40,7 @@ function pickIcon(id: string) {
 }
 
 export default function Overview() {
-  const { weatherData, ForecastData, temperatureUnit } = useContext<WeatherContextType>(
+  const { weatherData, ForecastData, temperatureUnit, setForecastData, setWeatherData } = useContext<WeatherContextType>(
     WeatherContext
   );
   const temperature = weatherData ? calculateTemperature(temperatureUnit, weatherData.main.temp) : null;
@@ -53,10 +55,21 @@ export default function Overview() {
     ? `${weatherData.name} , ${weatherData.sys.country}`
     : null;
   const icon = weatherData ? pickIcon(weatherData.weather[0].icon) : null;
+  
+  function SearchforCity(e) {
+    if (e.keyCode === 13) {
+    getWeather(e.target.value).then((data) => {
+      setWeatherData(data);
+      getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
+        setForecastData(data)
+      )
+    })
+    e.target.value = ""
+  }}
 
   return (
     <div className="overview-component">
-      <div className="searchbar">Search</div>
+      <input className="searchbar" placeholder="Stadt eingeben" onKeyDown={SearchforCity}/>
       <img className="overview-image" src={icon} />
       <p className="overview-temperature">{temperature}</p>
       <p className="overview-date">

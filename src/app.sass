@@ -27,6 +27,9 @@ body
 @mixin font-size-s
   font-size: clamp(0.5rem, 1.15vw, 1.5rem)
 
+@mixin font-size-xs
+  font-size: clamp(0.4rem, 1.1vw, 1.4rem)
+
 /* --------------------- */
 /* Neumorphism mixins */
 
@@ -84,6 +87,8 @@ body
   align-items: center
   justify-content: center
   @include font-size-s
+  border: none
+  padding-left: 1em
 
 .overview-temperature
   @include font-size-xl
@@ -143,7 +148,7 @@ body
   align-items: center
   aspect-ratio: 3 / 1
   font-size-adjust: 0.1
-  font-size: 99%
+  @include font-size-xs
 
 .timeframe-inactive
   @include neumorphism-default(null , 100%)
@@ -156,7 +161,7 @@ body
 
 .timeframe-inactive:hover
   box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.2), 5px 5px 9px rgba(94, 104, 121, 0.15)
-  font-size: 99.5%
+  @include font-size-xs
 
 .temperature-container
   width: 13%
@@ -173,7 +178,7 @@ body
   aspect-ratio: 1 / 1
   border-radius: 30px
   text-align: center
-  font-size: 98%
+  @include font-size-xs
 
 .temperature-inactive
   @include neumorphism-default(null , 100%)
@@ -187,7 +192,7 @@ body
 
 .temperature-inactive:hover
   box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.2), 5px 5px 9px rgba(94, 104, 121, 0.15)
-  font-size: 99.25%
+  @include font-size-xs
 
 /* --------------------- */
 /* Week component */
