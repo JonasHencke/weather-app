@@ -15,7 +15,7 @@ import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
 import mist from "../SVGs/mist-svgrepo-com.svg"
 import calculateTemperature from "../utils/calculateTemperature";
-import getWeather from "../utils/getWeatherData";
+import getLocation from "../utils/getLocation";
 import getWeatherForecast from "../utils/getWeatherForecast";
 
 function pickIcon(id: string) {
@@ -43,27 +43,27 @@ function pickIcon(id: string) {
 }
 
 export default function Overview() {
-  const { weatherData, ForecastData, temperatureUnit, setForecastData, setWeatherData } = useContext<WeatherContextType>(
+  const { locationData, ForecastData, temperatureUnit, setForecastData, setLocationData } = useContext<WeatherContextType>(
     WeatherContext
   );
-  const temperature = weatherData ? calculateTemperature(temperatureUnit, weatherData.main.temp) : null;
-  const weatherStatus = weatherData ? weatherData.weather[0].description : null;
+  const temperature = ForecastData ? calculateTemperature(temperatureUnit, ForecastData.current.temp) : null;
+  const weatherStatus = ForecastData ? ForecastData.current.weather[0].description : null;
   const weekday = ForecastData
     ? getWeekday(ForecastData.current.dt, ForecastData.timezone)
     : null;
   const timeOfDay = ForecastData
     ? getTime(ForecastData.current.dt, ForecastData.timezone)
     : null;
-  const location = weatherData
-    ? `${weatherData.name} , ${weatherData.sys.country}`
+  const location = locationData
+    ? `${locationData[0].local_names.de ? locationData[0].local_names.de : locationData[0].name } , ${locationData[0].country}`
     : null;
-  const icon = weatherData ? pickIcon(weatherData.weather[0].icon) : null;
+  const icon = ForecastData ? pickIcon(ForecastData.current.weather[0].icon) : null;
   
   function SearchforCity(e) {
     if (e.keyCode === 13) {
-    getWeather(e.target.value).then((data) => {
-      setWeatherData(data);
-      getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
+    getLocation(e.target.value).then((data) => {
+      setLocationData(data);
+      getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
         setForecastData(data)
       )
     })

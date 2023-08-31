@@ -14,14 +14,14 @@ import calculateTemperature from "../utils/calculateTemperature";
 export default function Highlight() {
   const { weatherData, ForecastData, temperatureUnit } =
     useContext<WeatherContextType>(WeatherContext);
-  const visibility: number = weatherData
-    ? weatherData.visibility / 1000
+  const visibility: number = ForecastData
+    ? ForecastData.current.visibility / 1000
     : null;
-  const humidity: string | null = weatherData
-    ? weatherData.main.humidity
+  const humidity: string | null = ForecastData
+    ? ForecastData.current.humidity
     : null;
-  const windSpeed: string | null = weatherData
-    ? weatherData.wind.speed
+  const windSpeed: string | null = ForecastData
+    ? ForecastData.current.wind_speed
     : null;
   const UVIndex: string | null = ForecastData ? ForecastData.current.uvi : null;
   const sunrise: string | null = ForecastData

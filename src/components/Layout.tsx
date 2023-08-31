@@ -4,26 +4,26 @@ import Header from "./Header";
 import Week from "./Week";
 import Hour from "./Hour"
 import Highlight from "./Highlight";
-import getWeather from "../utils/getWeatherData";
+import getLocation from "../utils/getLocation";
 import getWeatherForecast from "../utils/getWeatherForecast";
 
 export interface WeatherContextType {
-  weatherData: null | object | string;
+  locationData: null | object | string;
   ForecastData: null | object | string;
   setTemperatureUnit: React.Dispatch<React.SetStateAction<"Celsius" | "Fahrenheit">>;
   setTimeframe: React.Dispatch<React.SetStateAction<"Week" | "Hour">>;
-  setWeatherData: React.Dispatch<React.SetStateAction<object | null>>;
+  setLocationData: React.Dispatch<React.SetStateAction<object | null>>;
   setForecastData: React.Dispatch<React.SetStateAction<object | null>>;
   temperatureUnit: "Celsius" | "Fahrenheit";
   timeframe: "Week" | "Hour"
 }
 
 const initialWeather: WeatherContextType = {
-  weatherData: null,
+  locationData: null,
   ForecastData: null,
   setTemperatureUnit: temperatureUnit => { },
   setTimeframe: timeframe => { },
-  setWeatherData: weatherData => { },
+  setLocationData: locationData => { },
   setForecastData: Data => { },
   temperatureUnit: "Celsius",
   timeframe: "Week",
@@ -32,21 +32,22 @@ const initialWeather: WeatherContextType = {
 export const WeatherContext = createContext<WeatherContextType>(initialWeather);
 
 export default function Layout() {
-  const [weatherData, setWeatherData] = useState<null | object>(null);
+  const [locationData, setLocationData] = useState<null | object>(null);
   const [ForecastData, setForecastData] = useState<null | object>(null);
   const [temperatureUnit, setTemperatureUnit] = useState<"Celsius" | "Fahrenheit">("Celsius")
   const [timeframe, setTimeframe] = useState<"Week" | "Hour">("Week")
 
   useEffect(() => {
-    getWeather("leipzig").then((data) => {
-      setWeatherData(data);
-      getWeatherForecast(data.coord.lon, data.coord.lat).then((data) =>
+    getLocation("Leipzig").then((data) => {
+      console.log(data)
+      setLocationData(data);
+      getWeatherForecast(data[0].lat, data[0].lon).then((data) =>
         setForecastData(data)
       )
-    })
+    });
   }, []);
   return (
-    <WeatherContext.Provider value={{weatherData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe, timeframe, setWeatherData, setForecastData}}>
+    <WeatherContext.Provider value={{locationData, ForecastData, temperatureUnit, setTemperatureUnit, setTimeframe, timeframe, setLocationData, setForecastData}}>
       <div className="flex-layout">
         <div className="flex-left">
           <Overview />
