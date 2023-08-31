@@ -77,9 +77,11 @@ export default function Overview() {
       </p>
       <p className="overview-wrapper">
         <img src={cloudy} />
-        {weatherStatus}
+        {ForecastData ? ForecastData.hourly[0].clouds + "%" : null}
       </p>
-      <p className="overview-wrapper"></p>
+      <p className="overview-wrapper">
+      <img src={showerRain} />
+      {ForecastData ? ForecastData.hourly[0].pop * 100 + "%" : null}</p>
       <div className="overview-location">{location}</div>
     </div>
   );

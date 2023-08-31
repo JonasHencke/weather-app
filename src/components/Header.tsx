@@ -8,8 +8,8 @@ export default function Header() {
   return (
     <div className="header-component">
       <div className="timeframe-container">
-        <div className={timeframe == "Hour" ? "timeframe-active" : "timeframe-inactive"} onClick={() => setTimeframe("Hour")}>Heute</div>
-        <div className={timeframe == "Week" ? "timeframe-active" : "timeframe-inactive"} onClick={() => setTimeframe("Week")}>Woche</div>
+        <div className={timeframe == "Hour" ? "timeframe-active" : "timeframe-inactive"} onClick={() => setTimeframe("Hour")}>Stündlich</div>
+        <div className={timeframe == "Week" ? "timeframe-active" : "timeframe-inactive"} onClick={() => setTimeframe("Week")}>Täglich</div>
       </div>
       <div className="temperature-container">
         <div className={temperatureUnit == "Celsius" ? "temperature-active" : "temperature-inactive"} onClick={() => setTemperatureUnit("Celsius")}> C°</div>
