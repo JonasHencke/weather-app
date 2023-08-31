@@ -12,6 +12,7 @@ import thunder from "../SVGs/thunder.svg";
 import snow from "../SVGs/snowy-6.svg";
 import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
+import mist from "../SVGs/mist-svgrepo-com.svg"
 import calculateTemperature from "../utils/calculateTemperature";
 
 function pickIcon(id: string) {
@@ -33,6 +34,8 @@ function pickIcon(id: string) {
     return night;
   } else if (id == "02n") {
     return cloudyNight;
+  } else if (id == "50d" || id == "50n") {
+    return mist
   }
 }
 

@@ -13,6 +13,7 @@ import thunder from "../SVGs/thunder.svg";
 import snow from "../SVGs/snowy-6.svg";
 import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
+import mist from "../SVGs/mist-svgrepo-com.svg"
 import calculateTemperature from "../utils/calculateTemperature";
 import getWeather from "../utils/getWeatherData";
 import getWeatherForecast from "../utils/getWeatherForecast";
@@ -36,6 +37,8 @@ function pickIcon(id: string) {
     return night;
   } else if (id == "02n") {
     return cloudyNight;
+  } else if (id == "50d" || id == "50n") {
+    return mist
   }
 }
 
@@ -77,11 +80,11 @@ export default function Overview() {
       </p>
       <p className="overview-wrapper">
         <img src={cloudy} />
-        {ForecastData ? ForecastData.hourly[0].clouds + "%" : null}
+        {ForecastData ? "Bewölkung - " + ForecastData.hourly[0].clouds + "%" : null}
       </p>
       <p className="overview-wrapper">
       <img src={showerRain} />
-      {ForecastData ? ForecastData.hourly[0].pop * 100 + "%" : null}</p>
+      {ForecastData ? "Regen - " + Math.floor(ForecastData.hourly[0].pop * 100) + "%" : null}</p>
       <div className="overview-location">{location}</div>
     </div>
   );
