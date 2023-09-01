@@ -55,17 +55,23 @@ export default function Overview() {
     ? getTime(ForecastData.current.dt, ForecastData.timezone)
     : null;
   const location = locationData
-    ? `${locationData[0].local_names.de ? locationData[0].local_names.de : locationData[0].name } , ${locationData[0].country}`
+    ? `${locationData[0].local_names ? (locationData[0].local_names.de ? locationData[0].local_names.de : locationData[0].name) : locationData[0].name } , ${locationData[0].country}`
     : null;
+  
   const icon = ForecastData ? pickIcon(ForecastData.current.weather[0].icon) : null;
   
   function SearchforCity(e) {
+    const placeholder = e.target.value
     if (e.keyCode === 13) {
     getLocation(e.target.value).then((data) => {
+      if (data == false) {
+        alert(`Die Stadt "${placeholder}" konnte nicht gefunden werden`)
+        return
+      } else {
       setLocationData(data);
       getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
         setForecastData(data)
-      )
+      )}
     })
     e.target.value = ""
   }}
