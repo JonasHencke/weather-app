@@ -79,18 +79,18 @@ export default function Overview() {
     : null;
 
   function SearchforCity(e) {
-    const placeholder = e.target.value;
+    const searchword = e.target.value;
     if (e.keyCode === 13) {
-      getLocation(e.target.value).then((data) => {
+      getLocation(e.target.value.replace(/[^a-zA-Z ]/g, "")).then((data) => {
         if (data == false) {
-          alert(`Die Stadt "${placeholder}" konnte nicht gefunden werden`);
+          alert(`Die Stadt "${searchword}" konnte nicht gefunden werden`);
           return;
         } else {
           setLocationData(data);
           getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
             setForecastData(data)
           );
-          getCityImage(data[0].name.toLowerCase()).then((data) =>
+          getCityImage(data[0].name.toLowerCase().replace(/[^A-Z]+/ig, "")).then((data) =>
             setCityImage(data.photos ? data.photos[0].image.web : null)
           );
         }
