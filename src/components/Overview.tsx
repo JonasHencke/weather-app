@@ -74,7 +74,6 @@ export default function Overview() {
           : locationData[0].name
       } , ${locationData[0].country}`
     : null;
-  const locationImage = cityImage ? cityImage.photos[0].image.web : null;
   const icon = ForecastData
     ? pickIcon(ForecastData.current.weather[0].icon)
     : null;
@@ -93,7 +92,7 @@ export default function Overview() {
           );
           getCityImage((data[0].name).toLowerCase())
           .then((data) => 
-            setCityImage(data.photos ? data : null)
+            setCityImage(data.photos ? data.photos[0].image.web : null)
             )
         }
       });
@@ -126,7 +125,7 @@ export default function Overview() {
           ? "Regen - " + Math.floor(ForecastData.hourly[0].pop * 100) + "%"
           : null}
       </p>
-      <div className="overview-location" style={{backgroundImage: `url(${locationImage})`}}>{location}</div>
+      <div className="overview-location" style={{backgroundImage: `url(${cityImage})`}}>{location}</div>
     </div>
   );
 }

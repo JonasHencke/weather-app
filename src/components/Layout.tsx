@@ -19,8 +19,8 @@ export interface WeatherContextType {
   setForecastData: React.Dispatch<React.SetStateAction<object | null>>;
   temperatureUnit: "Celsius" | "Fahrenheit";
   timeframe: "Week" | "Hour";
-  cityImage: null | object | string;
-  setCityImage: React.Dispatch<React.SetStateAction<object | null>>;
+  cityImage: string;
+  setCityImage: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const initialWeather: WeatherContextType = {
@@ -45,7 +45,7 @@ export default function Layout() {
     "Celsius" | "Fahrenheit"
   >("Celsius");
   const [timeframe, setTimeframe] = useState<"Week" | "Hour">("Week");
-  const [cityImage, setCityImage] = useState<null | object>(null)
+  const [cityImage, setCityImage] = useState<null | string>(null)
 
   useEffect(() => {
     getLocation("leipzig").then((data) => {
@@ -54,7 +54,7 @@ export default function Layout() {
         setForecastData(data)
       );
       getCityImage((data[0].name).toLowerCase()).then((data) =>
-        setCityImage(data)
+      setCityImage(data.photos ? data.photos[0].image.web : null)
       );
     }
     );
