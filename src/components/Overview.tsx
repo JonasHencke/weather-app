@@ -51,7 +51,7 @@ export default function Overview() {
     setForecastData,
     setLocationData,
     cityImage,
-    setCityImage
+    setCityImage,
   } = useContext<WeatherContextType>(WeatherContext);
   const temperature = ForecastData
     ? calculateTemperature(temperatureUnit, ForecastData.current.temp)
@@ -90,16 +90,14 @@ export default function Overview() {
           getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
             setForecastData(data)
           );
-          getCityImage((data[0].name).toLowerCase())
-          .then((data) => 
+          getCityImage(data[0].name.toLowerCase()).then((data) =>
             setCityImage(data.photos ? data.photos[0].image.web : null)
-            )
+          );
         }
       });
       e.target.value = "";
     }
   }
-  
 
   return (
     <div className="overview-component">
@@ -125,7 +123,12 @@ export default function Overview() {
           ? "Regen - " + Math.floor(ForecastData.hourly[0].pop * 100) + "%"
           : null}
       </p>
-      <div className="overview-location" style={{backgroundImage: `url(${cityImage})`}}>{location}</div>
+      <div
+        className="overview-location"
+        style={cityImage ? { backgroundImage: `url(${cityImage})`} : { color: "#31456a", textShadow: "none"}}
+      >
+        {location}
+      </div>
     </div>
   );
 }

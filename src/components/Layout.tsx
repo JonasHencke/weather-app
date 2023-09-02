@@ -19,21 +19,21 @@ export interface WeatherContextType {
   setForecastData: React.Dispatch<React.SetStateAction<object | null>>;
   temperatureUnit: "Celsius" | "Fahrenheit";
   timeframe: "Week" | "Hour";
-  cityImage: string;
+  cityImage: string | null;
   setCityImage: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const initialWeather: WeatherContextType = {
   locationData: null,
   ForecastData: null,
-  setTemperatureUnit: (temperatureUnit) => {},
-  setTimeframe: (timeframe) => {},
-  setLocationData: (locationData) => {},
-  setForecastData: (Data) => {},
+  setTemperatureUnit: () => {},
+  setTimeframe: () => {},
+  setLocationData: () => {},
+  setForecastData: () => {},
   temperatureUnit: "Celsius",
   timeframe: "Week",
-  cityImage: null,
-  setCityImage: (cityImage) => {},
+  cityImage: "",
+  setCityImage: () => {},
 };
 
 export const WeatherContext = createContext<WeatherContextType>(initialWeather);
