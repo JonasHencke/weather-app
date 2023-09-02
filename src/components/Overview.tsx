@@ -13,10 +13,11 @@ import thunder from "../SVGs/thunder.svg";
 import snow from "../SVGs/snowy-6.svg";
 import night from "../SVGs/night.svg";
 import cloudyNight from "../SVGs/cloudy-night-3.svg";
-import mist from "../SVGs/mist-svgrepo-com.svg"
+import mist from "../SVGs/mist-svgrepo-com.svg";
 import calculateTemperature from "../utils/calculateTemperature";
 import getLocation from "../utils/getLocation";
 import getWeatherForecast from "../utils/getWeatherForecast";
+import getCityImage from "../utils/getCityImage";
 
 function pickIcon(id: string) {
   if (id == "01d") {
@@ -38,16 +39,26 @@ function pickIcon(id: string) {
   } else if (id == "02n") {
     return cloudyNight;
   } else if (id == "50d" || id == "50n") {
-    return mist
+    return mist;
   }
 }
 
 export default function Overview() {
-  const { locationData, ForecastData, temperatureUnit, setForecastData, setLocationData } = useContext<WeatherContextType>(
-    WeatherContext
-  );
-  const temperature = ForecastData ? calculateTemperature(temperatureUnit, ForecastData.current.temp) : null;
-  const weatherStatus = ForecastData ? ForecastData.current.weather[0].description : null;
+  const {
+    locationData,
+    ForecastData,
+    temperatureUnit,
+    setForecastData,
+    setLocationData,
+    cityImage,
+    setCityImage
+  } = useContext<WeatherContextType>(WeatherContext);
+  const temperature = ForecastData
+    ? calculateTemperature(temperatureUnit, ForecastData.current.temp)
+    : null;
+  const weatherStatus = ForecastData
+    ? ForecastData.current.weather[0].description
+    : null;
   const weekday = ForecastData
     ? getWeekday(ForecastData.current.dt, ForecastData.timezone)
     : null;
@@ -55,30 +66,49 @@ export default function Overview() {
     ? getTime(ForecastData.current.dt, ForecastData.timezone)
     : null;
   const location = locationData
-    ? `${locationData[0].local_names ? (locationData[0].local_names.de ? locationData[0].local_names.de : locationData[0].name) : locationData[0].name } , ${locationData[0].country}`
+    ? `${
+        locationData[0].local_names
+          ? locationData[0].local_names.de
+            ? locationData[0].local_names.de
+            : locationData[0].name
+          : locationData[0].name
+      } , ${locationData[0].country}`
     : null;
-  
-  const icon = ForecastData ? pickIcon(ForecastData.current.weather[0].icon) : null;
-  
+  const locationImage = cityImage ? cityImage.photos[0].image.web : null;
+  const icon = ForecastData
+    ? pickIcon(ForecastData.current.weather[0].icon)
+    : null;
+
   function SearchforCity(e) {
-    const placeholder = e.target.value
+    const placeholder = e.target.value;
     if (e.keyCode === 13) {
-    getLocation(e.target.value).then((data) => {
-      if (data == false) {
-        alert(`Die Stadt "${placeholder}" konnte nicht gefunden werden`)
-        return
-      } else {
-      setLocationData(data);
-      getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
-        setForecastData(data)
-      )}
-    })
-    e.target.value = ""
-  }}
+      getLocation(e.target.value).then((data) => {
+        if (data == false) {
+          alert(`Die Stadt "${placeholder}" konnte nicht gefunden werden`);
+          return;
+        } else {
+          setLocationData(data);
+          getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
+            setForecastData(data)
+          );
+          getCityImage((data[0].name).toLowerCase())
+          .then((data) => 
+            setCityImage(data.photos ? data : null)
+            )
+        }
+      });
+      e.target.value = "";
+    }
+  }
+  
 
   return (
     <div className="overview-component">
-      <input className="searchbar" placeholder="Stadt eingeben" onKeyDown={SearchforCity}/>
+      <input
+        className="searchbar"
+        placeholder="Stadt eingeben"
+        onKeyDown={SearchforCity}
+      />
       <img className="overview-image" src={icon} />
       <p className="overview-temperature">{temperature}</p>
       <p className="overview-date">
@@ -86,12 +116,17 @@ export default function Overview() {
       </p>
       <p className="overview-wrapper">
         <img src={cloudy} />
-        {ForecastData ? "Bewölkung - " + ForecastData.hourly[0].clouds + "%" : null}
+        {ForecastData
+          ? "Bewölkung - " + ForecastData.hourly[0].clouds + "%"
+          : null}
       </p>
       <p className="overview-wrapper">
-      <img src={showerRain} />
-      {ForecastData ? "Regen - " + Math.floor(ForecastData.hourly[0].pop * 100) + "%" : null}</p>
-      <div className="overview-location">{location}</div>
+        <img src={showerRain} />
+        {ForecastData
+          ? "Regen - " + Math.floor(ForecastData.hourly[0].pop * 100) + "%"
+          : null}
+      </p>
+      <div className="overview-location" style={{backgroundImage: `url(${locationImage})`}}>{location}</div>
     </div>
   );
 }
