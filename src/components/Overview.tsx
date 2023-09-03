@@ -75,12 +75,12 @@ export default function Overview() {
     ? pickIcon(ForecastData.current.weather[0].icon)
     : null;
 
-  function SearchforCity(e: React.ChangeEvent<HTMLInputElement>) {
-    const searchword = e.target.value;
-    if (e.keyCode === 13) {
-      getLocation(e.target.value /* .replace(/[^a-zA-Z ]/g, "") */).then(
+  function SearchforCity(e: React.ChangeEvent | React.KeyboardEvent <HTMLInputElement>) {
+    const searchword = (e.target as HTMLInputElement).value;
+    if ((e as React.KeyboardEvent).key === "Enter") {
+      getLocation((e.target as HTMLInputElement).value /* .replace(/[^a-zA-Z ]/g, "") */).then(
         (data) => {
-          if (data == false) {
+          if (data == false || "cod" in data) {
             alert(`Die Stadt "${searchword}" konnte nicht gefunden werden`);
             return;
           } else {
@@ -96,7 +96,7 @@ export default function Overview() {
           }
         }
       );
-      e.target.value = "";
+      (e.target as HTMLInputElement).value = "";
     }
   }
 
