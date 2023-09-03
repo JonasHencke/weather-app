@@ -56,9 +56,6 @@ export default function Overview() {
   const temperature = ForecastData
     ? calculateTemperature(temperatureUnit, ForecastData.current.temp)
     : null;
-  const weatherStatus = ForecastData
-    ? ForecastData.current.weather[0].description
-    : null;
   const weekday = ForecastData
     ? getWeekday(ForecastData.current.dt, ForecastData.timezone)
     : null;
@@ -78,23 +75,27 @@ export default function Overview() {
     ? pickIcon(ForecastData.current.weather[0].icon)
     : null;
 
-  function SearchforCity(e) {
+  function SearchforCity(e: React.ChangeEvent<HTMLInputElement>) {
     const searchword = e.target.value;
     if (e.keyCode === 13) {
-      getLocation(e.target.value.replace(/[^a-zA-Z ]/g, "")).then((data) => {
-        if (data == false) {
-          alert(`Die Stadt "${searchword}" konnte nicht gefunden werden`);
-          return;
-        } else {
-          setLocationData(data);
-          getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
-            setForecastData(data)
-          );
-          getCityImage(data[0].name.toLowerCase().replace(/[^A-Z]+/ig, "")).then((data) =>
-            setCityImage(data.photos ? data.photos[0].image.web : null)
-          );
+      getLocation(e.target.value /* .replace(/[^a-zA-Z ]/g, "") */).then(
+        (data) => {
+          if (data == false) {
+            alert(`Die Stadt "${searchword}" konnte nicht gefunden werden`);
+            return;
+          } else {
+            setLocationData(data);
+            getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
+              setForecastData(data)
+            );
+            getCityImage(
+              data[0].name.toLowerCase().replace(/[^A-Z]+/gi, "")
+            ).then((data) =>
+              setCityImage(data.photos ? data.photos[0].image.web : null)
+            );
+          }
         }
-      });
+      );
       e.target.value = "";
     }
   }
@@ -125,7 +126,11 @@ export default function Overview() {
       </p>
       <div
         className="overview-location"
-        style={cityImage ? { backgroundImage: `url(${cityImage})`} : { color: "#31456a", textShadow: "none"}}
+        style={
+          cityImage
+            ? { backgroundImage: `url(${cityImage})` }
+            : { color: "#31456a", textShadow: "none" }
+        }
       >
         {location}
       </div>

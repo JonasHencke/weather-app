@@ -7,16 +7,18 @@ import Highlight from "./Highlight";
 import getLocation from "../utils/getLocation";
 import getWeatherForecast from "../utils/getWeatherForecast";
 import getCityImage from "../utils/getCityImage";
+import { locationDataInterface } from "../Interfaces/locationData";
+import { ForecastDataInterface } from "../Interfaces/ForecastData";
 
 export interface WeatherContextType {
-  locationData: null | object | string;
-  ForecastData: null | object | string;
+  locationData: null | [locationDataInterface];
+  ForecastData: null | ForecastDataInterface;
   setTemperatureUnit: React.Dispatch<
     React.SetStateAction<"Celsius" | "Fahrenheit">
   >;
   setTimeframe: React.Dispatch<React.SetStateAction<"Week" | "Hour">>;
-  setLocationData: React.Dispatch<React.SetStateAction<object | null>>;
-  setForecastData: React.Dispatch<React.SetStateAction<object | null>>;
+  setLocationData: React.Dispatch<React.SetStateAction<[locationDataInterface] | null>>;
+  setForecastData: React.Dispatch<React.SetStateAction<ForecastDataInterface | null>>;
   temperatureUnit: "Celsius" | "Fahrenheit";
   timeframe: "Week" | "Hour";
   cityImage: string | null;
@@ -39,8 +41,8 @@ const initialWeather: WeatherContextType = {
 export const WeatherContext = createContext<WeatherContextType>(initialWeather);
 
 export default function Layout() {
-  const [locationData, setLocationData] = useState<null | object>(null);
-  const [ForecastData, setForecastData] = useState<null | object>(null);
+  const [locationData, setLocationData] = useState<null | [locationDataInterface]>(null);
+  const [ForecastData, setForecastData] = useState<null | ForecastDataInterface>(null);
   const [temperatureUnit, setTemperatureUnit] = useState<
     "Celsius" | "Fahrenheit"
   >("Celsius");
