@@ -1,4 +1,3 @@
-import React from "react";
 import { useContext } from "react";
 import { WeatherContext } from "./Layout";
 import getTime from "../utils/getTime";
@@ -12,28 +11,28 @@ import returnPressure from "../utils/returnPressure";
 import calculateTemperature from "../utils/calculateTemperature";
 
 export default function Highlight() {
-  const { weatherData, ForecastData, temperatureUnit } =
+  const { ForecastData, temperatureUnit } =
     useContext<WeatherContextType>(WeatherContext);
-  const visibility: number = ForecastData
+  const visibility: number | null = ForecastData
     ? ForecastData.current.visibility / 1000
     : null;
-  const humidity: string | null = ForecastData
+  const humidity: number | null = ForecastData
     ? ForecastData.current.humidity
     : null;
-  const windSpeed: string | null = ForecastData
+  const windSpeed: number | null = ForecastData
     ? ForecastData.current.wind_speed
     : null;
-  const UVIndex: string | null = ForecastData ? ForecastData.current.uvi : null;
+  const UVIndex: number | null = ForecastData ? ForecastData.current.uvi : null;
   const sunrise: string | null = ForecastData
     ? getTime(ForecastData.current.sunrise, ForecastData.timezone)
     : null;
   const sunset: string | null = ForecastData
     ? getTime(ForecastData.current.sunset, ForecastData.timezone)
     : null;
-  const pressure: string | null = ForecastData
+  const pressure: number | null = ForecastData
     ? ForecastData.current.pressure
     : null;
-    const dew_point: string | null = ForecastData
+    const dew_point: string | null | undefined = ForecastData
     ? calculateTemperature( temperatureUnit , ForecastData.current.dew_point)
     : null;
 

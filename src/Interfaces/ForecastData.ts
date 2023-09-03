@@ -14,10 +14,10 @@ export interface ForecastDataInterface {
     dt:         number;
     feels_like: number;
     humidity:   number;
-    pop?:       number;
+    pop:        number;
     pressure:   number;
-    sunrise?:   number;
-    sunset?:    number;
+    sunrise:   number;
+    sunset:    number;
     temp:       number;
     uvi:        number;
     visibility: number;
