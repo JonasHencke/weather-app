@@ -75,9 +75,25 @@ body
   display: flex
   flex-direction: column
   align-items: center
+  justify-content: space-between
+
+.overview-first-container
+  width: 100%
+  height: 40%
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.overview-second-container
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  height: 10%
 
 .overview-image
-  height: 30%
+  height: 70%
 
 .searchbar
   @include neumorphism-pressed(80% , 2em )
@@ -288,3 +304,64 @@ body
 .sunrise-sunset
   gap: 15%
   margin-top: 5%
+
+/* --------------------- */
+/* Meida Querie mobile */
+@mixin mobile-font-size-xl
+  font-size: clamp(3rem, 3vw, 4rem)
+
+@mixin mobile-font-size-l
+  font-size: clamp(2rem, 20vw, 7rem)
+
+@mixin mobile-font-size-m
+  font-size: clamp(1rem, 15vw, 5rem)
+
+@mixin mobile-font-size-s
+  font-size: clamp(1rem, 10vw, 4rem)
+
+@mixin mobile-font-size-xs
+  font-size: clamp(0.5rem, 5vw, 2rem)
+
+
+@media (max-width: 1000px)
+  #root
+    align-items: center
+
+  .flex-layout
+    flex-direction: column
+
+  .flex-left
+    width: 100%
+
+  .flex-right
+    width: 100%
+
+  .overview-component
+    flex-direction: column
+    align-items: center
+    height: auto
+
+  .searchbar
+    @include mobile-font-size-xs
+
+  .overview-image
+    width: 60%
+    height: 30%
+    
+  .overview-location
+    @include mobile-font-size-xs
+    display: flex
+    justify-content: center
+    align-items: center
+
+  .overview-temperature
+    @include mobile-font-size-l
+    
+  .overview-date
+    @include mobile-font-size-s
+
+  .overview-wrapper
+    @include mobile-font-size-xs
+    
+    
+    

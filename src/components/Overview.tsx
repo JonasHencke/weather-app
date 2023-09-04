@@ -102,16 +102,20 @@ export default function Overview() {
 
   return (
     <div className="overview-component">
+      
       <input
         className="searchbar"
         placeholder="Stadt eingeben"
         onKeyDown={SearchforCity}
       />
+      <div className="overview-first-container">
       <img className="overview-image" src={icon} />
       <p className="overview-temperature">{temperature}</p>
       <p className="overview-date">
         {weekday}, {timeOfDay}
       </p>
+      </div>
+      <div className="overview-second-container">
       <p className="overview-wrapper">
         <img src={cloudy} />
         {ForecastData
@@ -124,6 +128,7 @@ export default function Overview() {
           ? "Regen - " + Math.floor(ForecastData.hourly[0].pop * 100) + "%"
           : null}
       </p>
+      </div>
       <div
         className="overview-location"
         style={
