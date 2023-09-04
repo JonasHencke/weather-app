@@ -102,7 +102,6 @@ export default function Overview() {
 
   return (
     <div className="overview-component">
-      
       <input
         className="searchbar"
         placeholder="Stadt eingeben"
