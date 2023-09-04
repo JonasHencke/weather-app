@@ -327,7 +327,10 @@ body
     align-items: center
 
   .flex-layout
+    display: flex
     flex-direction: column
+    max-width: 500px
+    height: auto
 
   .flex-left
     width: 100%
@@ -363,7 +366,7 @@ body
     @include mobile-font-size-xs
     
   .header-component
-    height: 25%
+    height: auto
     width: 100%
     @include mobile-font-size-xs
     display: flex
@@ -374,7 +377,6 @@ body
     flex-direction: column
     gap: 30%
     width: 80%
-    height: 100%
 
   .timeframe-container, .temperature-container, .timeframe-active, .timeframe-inactive, .temperature-active, .temperature-inactive
     @include mobile-font-size-xs
@@ -383,6 +385,46 @@ body
   .temperature-inactive:hover, .timeframe-inactive:hover
     @include mobile-font-size-xs
     
+  .week-component
+      flex-direction: column
+      gap: 2rem
+      margin-top: 10%
+
+  .weekday
+    @include mobile-font-size-s
+    width: 70%
+    padding: 2rem
     
+  .weekday img
+    width: 45%
+
+  .weekday p
+    margin: 0
+    padding: 0
+
+  .highlight-component
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    height: 100%
+    width: 100%
+    gap: 2rem
+    @include mobile-font-size-m
+
+  .highlight
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 90%
+    gap: 2rem
+    padding: 2rem 0
+  
+  .highlight *
+    @include mobile-font-size-xs
     
+  .highlight-heading
+    align-self: center
+    padding: 0
     
