@@ -10,6 +10,10 @@ html, body, #root
   justify-content: center
   align-items: center
 
+@media (max-width: 1000px)
+  #root
+    align-items: center
+
 body
   background-color: #e3edf7
   color: #31456a
@@ -29,6 +33,21 @@ body
 
 @mixin font-size-xs
   font-size: clamp(0.4rem, 1.1vw, 1.4rem)
+
+@mixin mobile-font-size-xl
+  font-size: clamp(3rem, 3vw, 4rem)
+
+@mixin mobile-font-size-l
+  font-size: clamp(2rem, 20vw, 7rem)
+
+@mixin mobile-font-size-m
+  font-size: clamp(1rem, 15vw, 5rem)
+
+@mixin mobile-font-size-s
+  font-size: clamp(1rem, 10vw, 3.5rem)
+
+@mixin mobile-font-size-xs
+  font-size: clamp(0.5rem, 5vw, 2rem)
 
 /* --------------------- */
 /* Neumorphism mixins */
@@ -66,6 +85,22 @@ body
   display: flex
   flex-direction: column
   width: 75%
+
+@media (max-width: 1000px)
+
+  .flex-layout
+    display: flex
+    flex-direction: column
+    width: 90%
+    height: 100%
+    max-width: 500px
+
+  .flex-left
+    width: 100%
+    margin-top: 1rem
+
+  .flex-right
+    width: 100%
 
 /* --------------------- */
 /* Overview component */
@@ -149,6 +184,34 @@ body
   background-size: 100% 100%
   text-shadow: 0px 2px 3px rgb(0 0 0 / 100%)
 
+@media (max-width: 1000px)
+
+  .overview-component
+    flex-direction: column
+    align-items: center
+    height: auto
+
+  .searchbar
+    @include mobile-font-size-xs
+
+  .overview-image
+    width: 60%
+    height: 30%
+    
+  .overview-location
+    @include mobile-font-size-xs
+    display: flex
+    justify-content: center
+    align-items: center
+
+  .overview-temperature
+    @include mobile-font-size-l
+    
+  .overview-date
+    @include mobile-font-size-s
+
+  .overview-wrapper
+    @include mobile-font-size-xs
 /* --------------------- */
 /* Header component */
 
@@ -214,8 +277,37 @@ body
   box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.2), 5px 5px 9px rgba(94, 104, 121, 0.15)
   @include font-size-xs
 
+@media (max-width: 1000px)
+
+  .header-component
+    align-self: center
+    height: auto
+    width: 90%
+    @include mobile-font-size-xs
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 10%
+  
+  .temperature-container, .timeframe-container
+    flex-direction: column
+    gap: 30%
+    width: 100%
+
+  .timeframe-container, .temperature-container, .timeframe-active, .timeframe-inactive, .temperature-active, .temperature-inactive
+    @include mobile-font-size-xs
+    aspect-ratio: auto
+  
+  .timeframe-active, .timeframe-inactive, .temperature-active, .temperature-inactive
+    width: 100%
+    padding: 3vw 1vw
+    
+  
+  .temperature-inactive:hover, .timeframe-inactive:hover
+    @include mobile-font-size-xs
+
 /* --------------------- */
-/* Week component */
+/* Week/Hour component */
 
 .week-component
   display: flex
@@ -238,6 +330,26 @@ body
 .weekday img
   width: 70%
   align-self: center
+
+@media (max-width: 1000px)
+    
+  .week-component
+      flex-direction: column
+      gap: 2rem
+      margin-top: 10%
+      height: auto
+
+  .weekday
+    @include mobile-font-size-s
+    width: 70%
+    padding: 2rem
+    
+  .weekday img
+    width: 45%
+
+  .weekday p
+    margin: 0
+    padding: 0
 
 /* --------------------- */
 /* Highlight component */
@@ -267,6 +379,7 @@ body
   align-self: start
   padding-left: 10%
   margin-top: 7%
+  margin-bottom: 5%
 
 .highlight-body
   display: flex
@@ -303,113 +416,7 @@ body
   gap: 15%
   margin-top: 5%
 
-/* --------------------- */
-/* Meida Querie mobile */
-@mixin mobile-font-size-xl
-  font-size: clamp(3rem, 3vw, 4rem)
-
-@mixin mobile-font-size-l
-  font-size: clamp(2rem, 20vw, 7rem)
-
-@mixin mobile-font-size-m
-  font-size: clamp(1rem, 15vw, 5rem)
-
-@mixin mobile-font-size-s
-  font-size: clamp(1rem, 10vw, 4rem)
-
-@mixin mobile-font-size-xs
-  font-size: clamp(0.5rem, 5vw, 2rem)
-
-
 @media (max-width: 1000px)
-  #root
-    align-items: center
-
-  .flex-layout
-    display: flex
-    flex-direction: column
-    width: 90%
-    height: 100%
-    max-width: 500px
-
-  .flex-left
-    width: 100%
-    margin-top: 1rem
-
-  .flex-right
-    width: 100%
-
-  .overview-component
-    flex-direction: column
-    align-items: center
-    height: auto
-
-  .searchbar
-    @include mobile-font-size-xs
-
-  .overview-image
-    width: 60%
-    height: 30%
-    
-  .overview-location
-    @include mobile-font-size-xs
-    display: flex
-    justify-content: center
-    align-items: center
-
-  .overview-temperature
-    @include mobile-font-size-l
-    
-  .overview-date
-    @include mobile-font-size-s
-
-  .overview-wrapper
-    @include mobile-font-size-xs
-    
-  .header-component
-    align-self: center
-    height: auto
-    width: 90%
-    @include mobile-font-size-xs
-    display: flex
-    justify-content: center
-    align-items: center
-    gap: 10%
-  
-  .temperature-container, .timeframe-container
-    flex-direction: column
-    gap: 30%
-    width: 100%
-
-  .timeframe-container, .temperature-container, .timeframe-active, .timeframe-inactive, .temperature-active, .temperature-inactive
-    @include mobile-font-size-xs
-    aspect-ratio: auto
-  
-  .timeframe-active, .timeframe-inactive, .temperature-active, .temperature-inactive
-    width: 100%
-    padding: 3vw 1vw
-    
-  
-  .temperature-inactive:hover, .timeframe-inactive:hover
-    @include mobile-font-size-xs
-    
-  .week-component
-      flex-direction: column
-      gap: 2rem
-      margin-top: 10%
-      height: auto
-
-  .weekday
-    @include mobile-font-size-s
-    width: 70%
-    padding: 2rem
-    
-  .weekday img
-    width: 45%
-
-  .weekday p
-    margin: 0
-    padding: 0
 
   .highlight-component
     display: flex
@@ -453,4 +460,5 @@ body
     
   .hightlight-sunrise div
     @include  mobile-font-size-m
+
   
