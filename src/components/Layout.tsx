@@ -53,8 +53,8 @@ export default function Layout() {
     getLocation("leipzig").then((data) => {
       setLocationData(data);
       getWeatherForecast(data[0].lat, data[0].lon).then((data) =>
-        setForecastData(data)
-      );
+        data.current ? setForecastData(data) : console.log(data.message)
+      ); 
       getCityImage((data[0].name).toLowerCase()).then((data) =>
       setCityImage(data.photos ? data.photos[0].image.web : null)
       );

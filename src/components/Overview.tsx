@@ -86,7 +86,7 @@ export default function Overview() {
           } else {
             setLocationData(data);
             getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
-              setForecastData(data)
+              data.current ? setForecastData(data) : console.log(data.message)
             );
             getCityImage(
               data[0].name.toLowerCase().replace(/[^A-Z]+/gi, "")
