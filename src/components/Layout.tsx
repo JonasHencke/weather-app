@@ -50,7 +50,7 @@ export default function Layout() {
   const [cityImage, setCityImage] = useState<null | string>(null)
 
   useEffect(() => {
-    getLocation("halle").then((data) => {
+    getLocation("leipzig").then((data) => {
       setLocationData(data);
       getWeatherForecast(data[0].lon, data[0].lat).then((data) =>
         data.current ? setForecastData(data) : console.log(data.message)
